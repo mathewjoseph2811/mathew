@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+  {% if category %}
+    {{category.desc|truncatewords:155}}
+  {% else %}
+    welcome to ABC Store, where you can buy things
+  {% endif %}
+{% endblock %}
+
+{% block title %}
+  {% if category %}
+    {{category.name}}-ABC Store
+  {% else %}
+    see our new collections
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% if category %}
+    <div class="row my_row">
+        <div class="mx_auto">
+            <P><a href="{% url 'app1:allProdCat' %}">Our Product Collections</a></P>
+        </div>
+    </div>
+  {% endif %}
+  <div>
+      {% if category %}
+        <div>
+            <img class="my_image" src="{{category.img.url}}" alt="{{category.name}}">
+        </div>
+        <br>
+        <div>
+            <h1 class="text-center font_class"><b>{{category.name}}</b></h1>
+            <p class="text-justify my_desc"><b>{{category.desc}}</b></p>
+        </div><br>
+      <br>
+      {% else %}
+      <div class="card">
+        <div>
+            <img class="my_img" src="{% static 'img/banner.jpg' %}" alt="our products" width="1250px">
+        </div>
+        <br>
+        <div>
+            <h1 class="our" >Our Product Collections</h1>
+            <p class="text-justify my_desc">The suit has framed all the pivotal moments in history. There’s no denying, it’s a powerful piece of clothing – enough to make anyone feel ready to change the world.
+We built our suit for the game-changers. Designed for the man ready to take on the world, the slim fit and accentuated shoulders give you the presence you deserve.
+Made from the highest-quality fabric, we believe that how you dress has a significant effect on how you’re perceived – we made this suit for the highest quality impact.</p>
+<br>
+            <br>
+        </div>
+      </div>
+      {% endif %}
+  </div>
+  <div class="container">
+      <div class="row">
+          {% for i in pro %}
+          <div class="col-md-4 my_card">
+          <div class="card" style="width: 300px; height:400px; background-color:#F7DC6F">
+          <div>
+              <div>
+                  <a  href="{{i.get_url}}"><img class="card-img-top my_card_img" src="{{i.img.url}}" alt="{{i.name}}"></a>
+              </div>
+          </div>
+          <div class="card-body">
+
+                  <h2 class="card-title my_card_title">{{i.name}}</h2>
+                  <p class="card-text my_card_text">RS: {{i.price}}<h6 style="color:green">10% off</h6></p>
+              <div>
+                  <a href="#" class="btn btn-primary">BUY NOW</a>
+                  <a href="{% url 'cart:add_cart' i.id %}" class="btn btn-warning">ADD TO CART</a>
+              </div>
+
+          </div>
+          </div>
+          </div>
+          {% endfor %}
+      </div>
+
+      <div class="mx-auto">
+          {% if pro.paginator.num_pages > 1 %}
+          <hr>
+          <div class="text-center">
+              {% for p in pro.paginator.page_range %}
+              <a href="?page={{p}}" class="btn btn-primary btn-sm {% if pro.number == p %} active {% endif %}">{{p}}</a>
+              {% endfor %}<br>
+              {{pro}}
+          </div>
+          {% endif %}
+      </div>
+
+  </div>
+{% endblock %}
+
+
+

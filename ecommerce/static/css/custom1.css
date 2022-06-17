@@ -1,0 +1,136 @@
+
+body{
+font-family: 'Kdam Thmor Pro', sans-serif;
+
+}
+
+/*** nav bar***/
+.nav-item{
+    letter-spacing:0.2em;
+    font-size:20px;
+    color: green;
+    padding-left:20px;
+}
+
+.dropdown-item{
+    letter-spacing:0.2em;
+    font-size:20px;
+    color: red;
+}
+.nav_item .my_cart_count{
+    background-color:red;
+}
+
+/***footer ***/
+.my_footer{
+font-size:18px;
+padding-top:20px;
+background-color: yellow;
+height:60px;
+}
+
+
+/***category ***/
+.my_row{
+    padding-top:20px;
+}
+
+.my_row .mx_auto{
+    color:red;
+    font-size:20px;
+}
+
+
+
+.my_desc{
+    font-family: 'Gentium Plus', serif;
+    font-family: 'Kdam Thmor Pro', sans-serif;
+    font-size:20px;
+    color:black;
+    text-align: justify;
+    font-weight: bold;
+    padding-left:5px;
+    padding-right:5px;
+    padding-top:5px;
+}
+
+.my_image{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
+
+}
+
+.my_img{
+display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+}
+
+.my_card_img{
+display: block;
+  text-align: center;
+  margin-top: 5px;
+  width: 300px;
+  height:200px;
+
+}
+
+.our{
+     text-decoration: underline;
+     font-family: 'Anton', sans-serif;
+    font-family: 'Gentium Plus', serif;
+    font-family: 'Kdam Thmor Pro', sans-serif;
+     padding-top:50px;
+     padding-left:15px;
+     color:blue;
+}
+
+.my_card{
+padding-top:20px;
+padding-bottom:40px;
+}
+
+.my_card_title{
+    color:blue;
+    font-weight: bold;
+}
+.my_card_text{
+    color:red;
+    font-weight: bold;
+}
+
+.my_p_image{
+display: block;
+  text-align: center;
+  margin-top: 50px;
+  width: 400px;
+  height:300px;
+}
+
+/***cart page***/
+.my_custom_table{
+min-width:400px;
+font-size:14px;
+}
+.my_custom_thead{
+font-weight:normal;
+text-transform:uppercase;
+letter-spacing: .2em;
+background-color:
+}
+.custom_a{
+text-decoration:none;
+}
+
+.custom_image{
+    width: 300px;
+    height:200px;
+}
+.total{
+font-size:25px;
+font-weight: bold;
+color:red;
+}
