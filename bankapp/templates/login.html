@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LOGIN</title>
+    <link rel="stylesheet" href="{% static 'css/loginstyles.css' %}">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+
+
+<div class="login">
+  <h2 class="active"> sign in </h2>
+
+    {% for i in messages %}
+        <h3 style="color:red;">Error: {{i}}</h3>
+    {% endfor %}
+  <form action="###" method="post">
+  {% csrf_token %}
+    <input type="text" class="text" name="username" placeholder="enter username">
+     <span>username</span>
+
+    <br>
+
+    <br>
+
+    <input type="password" class="text"  name="password" placeholder="enter password">
+    <span>password</span>
+    <br>
+
+    <input type="checkbox" id="checkbox-1-1" class="" />
+    <label for="checkbox-1-1">Keep me Signed in</label>
+
+    <button class="signin">
+      Sign In
+    </button>
+
+
+    <hr>
+
+    <a href="{% url 'registration:registerfn' %}">New Registration</a>
+  </form>
+
+</div>
+
+</body>
+</html>

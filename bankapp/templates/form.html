@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create an Account</title>
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+
+    <style type="text/css">
+      .errorlist {
+        margin: 0;
+        padding: 0;
+      }
+      .errorlist li {
+        list-style: none;
+        font-size: 90%;
+        color: red;
+      }
+      .errorlist ~ input,
+      .errorlist ~ select {
+        border-color: red;
+      }
+    </style>
+
+</head>
+<body>
+<div class="container" style="padding-left:20%;padding-right:20%;">
+
+<form method="post" id="personForm" data-cities-url="{% url 'registration:ajax_load_cities' %}" novalidate>
+  {% csrf_token %}
+  <div class="container">
+    <h1 style="color:blue">Account Opening Form</h1>
+    <p style="color:blue" >Please fill in this form to create an account.</p>
+  {% for i in messages %}
+    <h3 style="color:red;">Error: {{i}}</h3>
+  {% endfor %}
+    <br><hr>
+      <div class="row">
+      <table>
+        <tr>
+          <th>
+              <div class="col-sm-6 col-md-6 col-6 col-lg-6"></div>
+          </th>
+          <th>
+              <div class="col-sm-6 col-md-6 col-6 col-lg-6"></div>
+          </th>
+        </tr>
+        <tr>
+            <td>
+    <label><b>NAME:</b></label>
+            </td>
+            <td>
+                {{form.errors.name}}
+                {{ form.name }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+    <label><b>DATE OF BIRTH: </b></label>
+            </td>
+            <td>{{form.errors.dob}}
+                {{ form.dob }}
+                <br><br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+    <label><b>AGE:  </b></label>
+            </td>
+            <td>{{form.errors.age}}
+                {{ form.age }}
+                <br><br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+    <label><b>GENDER:</b></label>
+            </td>
+            <td>{{form.errors.gender}}
+                {{ form.gender }}
+                <br><br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+    <label><b>PHONE NUMBER:</b></label>
+            </td>
+            <td>{{form.errors.phone}}
+    {{ form.phone }}<br><br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+    <label><b>MAIL ID:</b></label>
+            </td>
+            <td>{{form.errors.email}}
+    {{ form.email }}<br><br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+        <label><b>ADDRESS:</b></label>
+            </td>
+            <td>{{form.errors.address}}
+    {{ form.address }}<br><br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+        <label><b>DISTRICT:</b></label>
+            </td>
+            <td>{{form.errors.district}}
+                {{form.district}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+    <br><br>
+
+        <label><b>BRANCH:</b></label>
+            </td>
+            <td>
+
+    <br><br>
+                {{form.branch}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+    <br><br>
+        <label><b>ACCOUNT TYPE:</b></label>
+            </td>
+            <td>
+                <br><br>{{form.errors.account}}
+                {{ form.account }}
+            </td>
+        </tr>
+          <tr></tr>
+        <tr>
+            <td>
+        <label><b>MATERIALS PROVIDE:</b></label>
+            </td>
+            <td>
+        <h3>
+                Debit Card: {{ form.debit }}<br><br>
+                Credit Card: {{ form.credit }}<br><br>
+                Cheque Book: {{ form.cheque }}<br><br>
+        </h3>
+            </td>
+        </tr>
+        <tr>
+            <td>
+    <hr>
+
+                <a href="{% url 'registration:accepted' %}"><button type="submit" class="registerbtn">Register</button></a>
+            </td>
+      </table>
+  </div>
+      </div>
+</form>
+
+    </div>
+    <div class="container signin">
+    <a href="{% url 'registration:logout' %}"><button type="button" class="btn btn-danger"> Logout</button></a>
+  </div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    $("#id_district").change(function () {
+      var url = $("#personForm").attr("data-cities-url");
+      var countryId = $(this).val();
+
+      $.ajax({
+        url: url,
+        data: {
+          'country': countryId
+        },
+        success: function (data) {
+          $("#id_branch").html(data);
+        }
+      });
+
+    });
+  </script>
+
+</body>
+</html>
